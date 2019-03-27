@@ -5,10 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,6 +23,8 @@ public class Controller {
     TextArea numberLines;
     @FXML
     TextField name;
+    @FXML
+    MenuItem save;
 
     BufferedReader br = null;
     FileReader fr = null;
@@ -38,6 +37,28 @@ public class Controller {
                     this.setNumberLines();
                 }
             });
+
+        save.setOnAction( e -> {
+            FileChooser fileChooser = new FileChooser();
+
+            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Jared Compiler File(*.jrd)", "*.jrd");
+            fileChooser.getExtensionFilters().add(extFilter);
+
+
+            Stage stage = (Stage) myMenuBar.getScene().getWindow();
+            this.file = fileChooser.showSaveDialog(stage);
+
+            if (this.file != null) {
+                try {
+                    PrintWriter writer;
+                    writer = new PrintWriter(file);
+                    writer.println(this.guiInterface.getText());
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -88,54 +109,10 @@ public class Controller {
         this.numberLines.setText("1");
     }
 
-    @FXML private void openSaveHandler() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("guardar.fxml"));
-            Stage newS = new Stage();
-            newS.setScene(new Scene(loader.load()));
-            Controller controller = loader.getController();
-            if(this.guiInterface != null) {
-                String info = this.guiInterface.getText();
-            }
-            controller.setInfo(info);
-            newS.showAndWait();
-
-
-        }catch (IOException ex) {
-            System.out.println(this.guiInterface.getText());
-            System.out.println(ex.getMessage());
-        }
-    }
-
     @FXML private void setInfo(String info){
         this.info = info;
     }
 
-    @FXML private void saveFileHandler() {
-        try {
-            this.file = new File(  this.name.getText()+".jrd");
-            if (file.createNewFile()) {
-                System.out.println("Nuevo archivo creado");
-                FileWriter writer ;
-                writer = new FileWriter(file);
-                writer.write(info);
-                writer.close();
-                Stage stage = (Stage) this.name.getScene().getWindow();
-                stage.setTitle(this.file.getName());
-                stage.close();
-            }
-
-        }catch (IOException exi) {
-            System.out.println(exi.getMessage());
-        }finally {
-
-        }
-    }
-
-    @FXML private void cancelHandler() {
-        Stage stage = (Stage) name.getScene().getWindow();
-        stage.close();
-    }
 
     @FXML private void closeFileHandler(){
         try {

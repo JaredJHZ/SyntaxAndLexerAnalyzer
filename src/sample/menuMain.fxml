@@ -18,7 +18,7 @@
                        <MenuItem mnemonicParsing="false" text="Abrir archivo" onAction="#openFileHandler" />
                        <MenuItem mnemonicParsing="false" text="Cerrar archivo" onAction="#closeFileHandler" />
                        <MenuItem mnemonicParsing="false" text="Nuevo" onAction="#newFileHandler" />
-                       <MenuItem mnemonicParsing="false" text="Guardar archivo" onAction="#openSaveHandler" />
+                       <MenuItem mnemonicParsing="false" text="Guardar archivo" fx:id="save"/>
                        <MenuItem mnemonicParsing="false" text="Cerrar aplicacion" onAction="#closeButtonHandler"/>
                    </items>
                </Menu>
