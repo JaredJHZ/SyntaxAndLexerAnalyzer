@@ -16,7 +16,7 @@
                <Menu mnemonicParsing="false" text="Archivo">
                    <items>
                        <MenuItem mnemonicParsing="false" text="Abrir archivo" onAction="#openFileHandler" />
-                       <MenuItem mnemonicParsing="false" text="Cerrar archivo" onAction="#cancelHandler" />
+                       <MenuItem mnemonicParsing="false" text="Cerrar archivo" onAction="#closeFileHandler" />
                        <MenuItem mnemonicParsing="false" text="Nuevo" onAction="#newFileHandler" />
                        <MenuItem mnemonicParsing="false" text="Guardar archivo" onAction="#openSaveHandler" />
                        <MenuItem mnemonicParsing="false" text="Cerrar aplicacion" onAction="#closeButtonHandler"/>
@@ -58,10 +58,27 @@
            </menus>
        </MenuBar>
    </top>
-   <center>
-      <TextArea editable="false" fx:id="guiInterface" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
-   </center>
-   <bottom>
-      <Label text="Label" BorderPane.alignment="CENTER" />
-   </bottom>
+    <center>
+        <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <left>
+                <TextArea editable="false" fx:id="numberLines" prefHeight="283.0" prefWidth="30.0" BorderPane.alignment="CENTER" />
+            </left>
+            <center>
+                <TextArea editable="false" fx:id="guiInterface" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </center>
+        </BorderPane>
+    </center>
+    <bottom>
+        <BorderPane prefHeight="85.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+            <bottom>
+                <Label text="Jared Josafhat Hernández Zúñiga" BorderPane.alignment="CENTER" />
+            </bottom>
+            <center>
+                <TextArea editable="false" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+            </center>
+            <top>
+                <Separator prefHeight="0.0" prefWidth="600.0" BorderPane.alignment="CENTER" />
+            </top>
+        </BorderPane>
+    </bottom>
 </BorderPane>

@@ -14,7 +14,7 @@ public class Main extends Application {
         System.out.println(getClass().getResource("menuMain.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("menuMain.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 640, 500));
         primaryStage.show();
     }
 
