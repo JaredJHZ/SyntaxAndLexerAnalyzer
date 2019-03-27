@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+
+
+<BorderPane fx:controller="sample.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+       <MenuBar fx:id="myMenuBar" layoutY="2.0" prefHeight="29.0" prefWidth="619.0">
+           <menus>
+               <Menu mnemonicParsing="false" text="Archivo">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Abrir archivo" onAction="#openFileHandler" />
+                       <MenuItem mnemonicParsing="false" text="Cerrar archivo" onAction="#cancelHandler" />
+                       <MenuItem mnemonicParsing="false" text="Nuevo" onAction="#newFileHandler" />
+                       <MenuItem mnemonicParsing="false" text="Guardar archivo" onAction="#openSaveHandler" />
+                       <MenuItem mnemonicParsing="false" text="Cerrar aplicacion" onAction="#closeButtonHandler"/>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Tablas">
+                   <items>
+                       <Menu text="Tablas estaticas">
+                           <items>
+                               <MenuItem mnemonicParsing="false" text="Palabras reservadas" />
+                               <MenuItem mnemonicParsing="false" text="Caracteres especiales" />
+                               <Menu text="operadores">
+                                   <items>
+                                       <MenuItem mnemonicParsing="false" text="Aritmeticos" onAction="#openStaticTokens" />
+                                       <MenuItem mnemonicParsing="false" text="Relacionales" onAction="#openStaticTokens" />
+                                       <MenuItem mnemonicParsing="false" text="Logicos" onAction="#openStaticTokens" />
+                                   </items>
+                               </Menu>
+                           </items>
+                       </Menu>
+                       <Menu text="Tablas dinamicas">
+                           <items>
+                               <MenuItem text="Tablas dinamicas" />
+                           </items>
+                       </Menu>
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Analisis" >
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Lexico" />
+                       <MenuItem mnemonicParsing="false" text="Sintactico" />
+                   </items>
+               </Menu>
+               <Menu mnemonicParsing="false" text="Acerca de">
+                   <items>
+                       <MenuItem mnemonicParsing="false" text="Integrantes" />
+                   </items>
+               </Menu>
+           </menus>
+       </MenuBar>
+   </top>
+   <center>
+      <TextArea editable="false" fx:id="guiInterface" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+   <bottom>
+      <Label text="Label" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>
