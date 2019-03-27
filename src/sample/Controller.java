@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -38,7 +39,7 @@ public class Controller {
                 }
             });
 
-        save.setOnAction( e -> {
+            this.save.setOnAction( e -> {
             FileChooser fileChooser = new FileChooser();
 
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Jared Compiler File(*.jrd)", "*.jrd");
@@ -153,6 +154,20 @@ public class Controller {
 
     private void clearNumbers() {
         this.numberLines.setText(null);
+    }
+
+    @FXML private void copy() {
+        this.guiInterface.copy();
+    }
+
+    @FXML private void paste() {
+        if(Clipboard.getSystemClipboard().hasString()) {
+            this.guiInterface.paste();
+        }
+    }
+
+    @FXML private void cut() {
+        this.guiInterface.getSelectedText();
     }
 
 }

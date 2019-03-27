@@ -13,7 +13,7 @@ public class Main extends Application {
         this.title = "IDE Metacompilador ------> [Documento]";
         System.out.println(getClass().getResource("menuMain.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("menuMain.fxml"));
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle(this.title);
         primaryStage.setScene(new Scene(root, 640, 500));
         primaryStage.show();
     }

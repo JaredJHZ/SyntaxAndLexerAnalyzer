@@ -22,6 +22,11 @@
                        <MenuItem mnemonicParsing="false" text="Cerrar aplicacion" onAction="#closeButtonHandler"/>
                    </items>
                </Menu>
+               <Menu mnemonicParsing="false" text="Edicion">
+                   <MenuItem mnemonicParsing="false" text="Copiar" onAction="#copy" />
+                   <MenuItem mnemonicParsing="false" text="Cortar" onAction="#cut" />
+                   <MenuItem mnemonicParsing="false" text="Pegar" onAction="#paste" />
+               </Menu>
                <Menu mnemonicParsing="false" text="Tablas">
                    <items>
                        <Menu text="Tablas estaticas">
