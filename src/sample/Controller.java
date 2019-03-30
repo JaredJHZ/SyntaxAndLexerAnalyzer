@@ -61,6 +61,7 @@ public class Controller {
             }
         });
 
+        this.newFileHandler();
     }
 
     @FXML private void closeButtonHandler(ActionEvent e) {
@@ -136,6 +137,71 @@ public class Controller {
             stage.setScene(new Scene(root1));
             stage.show();
             System.out.println(getClass().getResource("tabla.fxml"));
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void openStaticRelTokens (ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("tablaR.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void openLogicStaticTokens (ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("LogicTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void openWordsTokens(ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("CharacterTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void openSpecialCharacter(ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("SpecialChTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void openDynamicTable(ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("DynamicTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    @FXML private void openProfile(ActionEvent e) {
+        try {
+            Parent root1 = FXMLLoader.load(getClass().getResource("profile.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));
+            stage.show();
         }catch (IOException ex) {
             ex.printStackTrace();
         }

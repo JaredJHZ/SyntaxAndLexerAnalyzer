@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.*?>
-<?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-
 
 <BorderPane fx:controller="sample.Controller" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <top>
@@ -31,20 +25,20 @@
                    <items>
                        <Menu text="Tablas estaticas">
                            <items>
-                               <MenuItem mnemonicParsing="false" text="Palabras reservadas" />
-                               <MenuItem mnemonicParsing="false" text="Caracteres especiales" />
-                               <Menu text="operadores">
+                               <MenuItem mnemonicParsing="false" text="Palabras reservadas" onAction="#openWordsTokens" />
+                               <MenuItem mnemonicParsing="false" text="Caracteres especiales" onAction="#openSpecialCharacter" />
+                               <Menu text="Operadores">
                                    <items>
                                        <MenuItem mnemonicParsing="false" text="Aritmeticos" onAction="#openStaticTokens" />
-                                       <MenuItem mnemonicParsing="false" text="Relacionales" onAction="#openStaticTokens" />
-                                       <MenuItem mnemonicParsing="false" text="Logicos" onAction="#openStaticTokens" />
+                                       <MenuItem mnemonicParsing="false" text="Relacionales" onAction="#openStaticRelTokens" />
+                                       <MenuItem mnemonicParsing="false" text="Logicos" onAction="#openLogicStaticTokens" />
                                    </items>
                                </Menu>
                            </items>
                        </Menu>
                        <Menu text="Tablas dinamicas">
                            <items>
-                               <MenuItem text="Tablas dinamicas" />
+                               <MenuItem text="Tablas dinamicas" onAction="#openDynamicTable" />
                            </items>
                        </Menu>
                    </items>
@@ -57,7 +51,7 @@
                </Menu>
                <Menu mnemonicParsing="false" text="Acerca de">
                    <items>
-                       <MenuItem mnemonicParsing="false" text="Integrantes" />
+                       <MenuItem mnemonicParsing="false" text="Integrantes" onAction="#openProfile"/>
                    </items>
                </Menu>
            </menus>

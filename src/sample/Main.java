@@ -11,7 +11,6 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.title = "IDE Metacompilador ------> [Documento]";
-        System.out.println(getClass().getResource("menuMain.fxml"));
         Parent root = FXMLLoader.load(getClass().getResource("menuMain.fxml"));
         primaryStage.setTitle(this.title);
         primaryStage.setScene(new Scene(root, 640, 500));
