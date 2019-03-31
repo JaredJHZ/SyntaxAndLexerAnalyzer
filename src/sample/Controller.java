@@ -1,5 +1,7 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,14 +12,18 @@ import javafx.scene.input.Clipboard;
 import javafx.scene.input.KeyCode;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import lexer.*;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Controller {
     @FXML
     MenuBar myMenuBar;
     @FXML
     TextArea guiInterface;
+    ObservableList<Token> data;
 
 
     @FXML
@@ -188,10 +194,15 @@ public class Controller {
 
     @FXML private void openDynamicTable(ActionEvent e) {
         try {
-            Parent root1 = FXMLLoader.load(getClass().getResource("DynamicTable.fxml"));
+            System.out.println("mmmm");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DynamicTable.fxml"));
             Stage stage = new Stage();
-            stage.setScene(new Scene(root1));
-            stage.show();
+            stage.setScene(new Scene(loader.load()));
+            DynamicTableController controller = loader.getController();
+
+            controller.setData(this.data);
+            stage.showAndWait();
+
         }catch (IOException ex) {
             ex.printStackTrace();
         }
@@ -205,6 +216,26 @@ public class Controller {
         }catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    @FXML private void doLexer(){
+        Lexer lex = new Lexer();
+
+        Scanner sn = new Scanner(this.guiInterface.getText());
+
+        String res = "";
+
+        while (sn.hasNextLine()){
+            res += sn.nextLine() + " newL ";
+        }
+
+        ArrayList<Token> lex1 = lex.lex(res);
+
+
+        this.data = FXCollections.observableArrayList(lex1);
+
+
+
     }
 
 
