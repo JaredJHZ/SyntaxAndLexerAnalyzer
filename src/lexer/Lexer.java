@@ -32,7 +32,6 @@ public class Lexer{
             String palabra = st.nextToken(); //mi palabra es igual a el siguiente token
 
             if(palabra.equals("newL")) {
-                System.out.println("XD");
                 this.lines = this.lines + 1;
                 nl = true;
             }
@@ -43,10 +42,7 @@ public class Lexer{
 
             int i=0;   // creo una variable i y le asigno 0 esto lo hago para controlar que no haya dos tokens iguales pero relacionados con dos tipos diferentes
             if(nl != true){
-                for(Tipos tokenTipo: Tipos.values()){ // recorro todos mis tipos hasta allar el que corresponda a mi palabra
-
-
-
+                for(var tokenTipo: Tipos.values()){ // recorro todos mis tipos hasta allar el que corresponda a mi palabra
 
                     Pattern patron = Pattern.compile(tokenTipo.patron);
                     Matcher matcher = patron.matcher(palabra);
@@ -106,7 +102,7 @@ public class Lexer{
                                 Reservada r = new Reservada(tk.getTipo().toString());
                                 rs.add(r);
                             }else{
-                                for(Reservada x:rs){
+                                for(var x:rs){
 
                                     if(x.reservada.equals(tk.getTipo().toString())){
 

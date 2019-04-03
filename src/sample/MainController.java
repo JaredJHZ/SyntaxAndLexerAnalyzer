@@ -18,7 +18,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Controller {
+public class MainController {
+    ArrayList<Token> lex1;
+    ObservableList<TK> tks = FXCollections.observableArrayList();
     @FXML
     MenuBar myMenuBar;
     @FXML
@@ -32,6 +34,8 @@ public class Controller {
     TextField name;
     @FXML
     MenuItem save;
+    @FXML
+            TextArea message;
 
     BufferedReader br = null;
     FileReader fr = null;
@@ -40,7 +44,7 @@ public class Controller {
 
     @FXML public void initialize() {
             this.guiInterface.setOnKeyReleased(e -> {
-                if(e.getCode() == KeyCode.ENTER) {
+                if(e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.BACK_SPACE) {
                     this.setNumberLines();
                 }
             });
@@ -194,7 +198,6 @@ public class Controller {
 
     @FXML private void openDynamicTable(ActionEvent e) {
         try {
-            System.out.println("mmmm");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DynamicTable.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(loader.load()));
@@ -229,12 +232,38 @@ public class Controller {
             res += sn.nextLine() + " newL ";
         }
 
-        ArrayList<Token> lex1 = lex.lex(res);
+        this.lex1 = lex.lex(res);
 
 
         this.data = FXCollections.observableArrayList(lex1);
 
 
+
+    }
+
+    @FXML private void doSyntax(){
+
+        this.tks.clear();
+
+        doLexer();
+
+        for(Token tk : this.lex1) {
+            this.tks.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea()));
+        }
+
+        Syntax sx = new Syntax();
+
+        sx.addElements(this.tks);
+
+        var errores = sx.effectSyntax();
+
+        if(errores == null || errores.isEmpty()) {
+            this.message.setText("Programa compilado con exito");
+        } else {
+            for(var error: errores) {
+                this.message.setText("Error en linea: " + error.getLinea());
+            }
+        }
 
     }
 

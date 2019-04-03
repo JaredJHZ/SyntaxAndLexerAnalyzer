@@ -38,7 +38,7 @@ public class DynamicTableController {
 
     public void setData(ObservableList<Token> data) {
 
-        for(Token tk : data) {
+        for(var tk : data) {
             this.data.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea()));
         }
 

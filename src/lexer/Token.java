@@ -38,8 +38,9 @@ enum Tipos{
     OperadorArtitmetico("[*|//|+|-]+{1}"),
     OperadoresLogicos("[&&,/|/|]"),
     OperadoresRelacionales("[>|<|>=|<=|==|!=]"),
-    PalabrasReservadas("\\bstring|bool|integer|decimal|for|else|if\\b{1}"),
+    PalabrasReservadas("\\bstring|bool|integer|decimal|for|else|if|void|main\\b{1}"),
     CaracteresEspeciales("\\b\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;\\b"),
+    apertura("hola"),
     Variables("\\w")
     ;
     public final String patron;
