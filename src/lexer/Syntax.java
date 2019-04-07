@@ -64,7 +64,7 @@ Stack<Error> errores;
                 return actual.getValor().matches("main");
             }
             case "main": {
-                return actual.getValor().matches( "\\{");
+                return actual.getValor().matches( "begin");
             }
             case "(": {
                 if (actual.getValor() == "(" || actual.getValor().matches(Tipos.OperadorArtitmetico.patron ) || actual.getValor().matches(Tipos.OperadoresLogicos.patron ) ) {
@@ -74,9 +74,9 @@ Stack<Error> errores;
                 }
             }
             case ")": {
-                return actual.getValor() == "{";
+                return actual.getValor() == "begin";
             }
-            case "{":{
+            case "begin":{
                 return actual.getValor().matches(Tipos.PalabrasReservadas.patron);
             }
             case "integer":{

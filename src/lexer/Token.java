@@ -35,12 +35,13 @@ public class Token {
 enum Tipos{
     NumeroEntero("^\\d+${1}"),
     NumeroDecimal("^[-+]?\\d+(\\.\\d+)?${1}"),
-    OperadorArtitmetico("[*|//|+|-]+{1}"),
+    cadena("\"(?:'.*?')|(?:\\\".*?\\\")"),
+    asignacion("="),
+    OperadorArtitmetico("(?>[*|//|+|-]+){1}"),
     OperadoresLogicos("[&&,/|/|]"),
     OperadoresRelacionales("[>|<|>=|<=|==|!=]"),
-    PalabrasReservadas("\\bstring|bool|integer|decimal|for|else|if|void|main\\b{1}"),
-    CaracteresEspeciales("\\b\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;\\b"),
-    apertura("hola"),
+    PalabrasReservadas("((\\bstring\\b)|(\\bbool\\b)|(\\binteger\\b)|(\\bdecimal\\b)|(\\bfor\\b)|(\\belse\\b)|(\\bif\\b)|(\\bvoid\\b)|(\\bmain\\b)|(\\bbegin\\b)|(\\bend\\b)){1}"),
+    CaracteresEspeciales("\\W+\\b\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;\\|b\\w+"),
     Variables("\\w")
     ;
     public final String patron;

@@ -16,18 +16,36 @@ import lexer.*;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Optional;
 import java.util.Scanner;
 
 public class MainController {
+
+    // Atributos
+
     ArrayList<Token> lex1;
+
     ObservableList<TK> tks = FXCollections.observableArrayList();
-    @FXML
-    MenuBar myMenuBar;
-    @FXML
-    TextArea guiInterface;
+
     ObservableList<Token> data;
 
+    BufferedReader br = null;
 
+    FileReader fr = null;
+
+    File file = null;
+
+    String info;
+
+    boolean archivoGuardado = false;
+
+    // Componentes de fxml
+
+    @FXML
+    MenuBar myMenuBar;
+
+    @FXML
+    TextArea guiInterface;
     @FXML
     TextArea numberLines;
     @FXML
@@ -37,12 +55,12 @@ public class MainController {
     @FXML
             TextArea message;
 
-    BufferedReader br = null;
-    FileReader fr = null;
-    File file = null;
-    String info;
+
 
     @FXML public void initialize() {
+
+
+
             this.guiInterface.setOnKeyReleased(e -> {
                 if(e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.BACK_SPACE) {
                     this.setNumberLines();
@@ -50,13 +68,15 @@ public class MainController {
             });
 
             this.save.setOnAction( e -> {
+
+                Stage stage = (Stage) myMenuBar.getScene().getWindow();
+
             FileChooser fileChooser = new FileChooser();
 
             FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Jared Compiler File(*.jrd)", "*.jrd");
+
             fileChooser.getExtensionFilters().add(extFilter);
 
-
-            Stage stage = (Stage) myMenuBar.getScene().getWindow();
             this.file = fileChooser.showSaveDialog(stage);
 
             if (this.file != null) {
@@ -69,13 +89,51 @@ public class MainController {
                     ex.printStackTrace();
                 }
             }
+
+
         });
 
         this.newFileHandler();
+
+
     }
 
     @FXML private void closeButtonHandler(ActionEvent e) {
         Stage stage = (Stage) myMenuBar.getScene().getWindow();
+        if(!this.archivoGuardado){
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Archivo no guardado");
+            alert.setHeaderText("Archivo no guardado");
+            alert.setContentText("Desea guardar el archivos?");
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK){
+
+
+                FileChooser fileChooser = new FileChooser();
+
+                FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Jared Compiler File(*.jrd)", "*.jrd");
+
+                fileChooser.getExtensionFilters().add(extFilter);
+
+                this.file = fileChooser.showSaveDialog(stage);
+
+                if (this.file != null) {
+                    try {
+                        PrintWriter writer;
+                        writer = new PrintWriter(file);
+                        writer.println(this.guiInterface.getText());
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+
+            } else {
+                System.out.println("no guardado");
+            }
+        }
         stage.close();
 
     }
@@ -141,7 +199,6 @@ public class MainController {
 
     @FXML private void openStaticTokens (ActionEvent e) {
         try {
-            System.out.println(getClass().getResource("tabla.fxml"));
             Parent root1 = FXMLLoader.load(getClass().getResource("tabla.fxml"));
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));
@@ -222,7 +279,7 @@ public class MainController {
     }
 
     @FXML private void doLexer(){
-        Lexer lex = new Lexer();
+        Lexer2 lex = new Lexer2();
 
         Scanner sn = new Scanner(this.guiInterface.getText());
 
@@ -295,5 +352,9 @@ public class MainController {
     @FXML private void cut() {
         this.guiInterface.getSelectedText();
     }
+
+
+
+
 
 }

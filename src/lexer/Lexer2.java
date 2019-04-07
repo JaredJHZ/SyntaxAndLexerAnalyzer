@@ -2,11 +2,10 @@ package lexer;
 
 import java.util.ArrayList;
 import java.util.Scanner;
-import java.util.StringTokenizer;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
-public class Lexer{
+public class Lexer2{
 
     int lines = 1;
 
@@ -20,41 +19,36 @@ public class Lexer{
 
         Scanner scanner = new Scanner(entrada);
         final ArrayList<Token> tokens = new ArrayList<Token>(); //arraylist de tokens
-        final StringTokenizer st = new StringTokenizer(entrada); // mi tokenizer que tendra el codigo que se pasa como parametro a entrada
+        Scanner st = new Scanner(entrada); // mi tokenizer que tendra el codigo que se pasa como parametro a entrada
+        st.useDelimiter(Delimiters.delimiters.patron);
         boolean nl = false;
-        while(st.hasMoreTokens()){
+        while(st.hasNext()){
 
+            var palabra = st.next();
+            System.out.println(palabra);
 
-
-
-
-
-            String palabra = st.nextToken(); //mi palabra es igual a el siguiente token
-
-            if(palabra.equals("newL")) {
+            if (palabra.equals("newL")) {
                 this.lines = this.lines + 1;
                 nl = true;
             }
 
 
-
             boolean matched = false; //mi bandera de encuentra o relacionado la pongo en falso
 
-            int i=0;   // creo una variable i y le asigno 0 esto lo hago para controlar que no haya dos tokens iguales pero relacionados con dos tipos diferentes
-            if(nl != true){
-                for(var tokenTipo: Tipos.values()){ // recorro todos mis tipos hasta allar el que corresponda a mi palabra
+            int i = 0;   // creo una variable i y le asigno 0 esto lo hago para controlar que no haya dos tokens iguales pero relacionados con dos tipos diferentes
+            if (nl != true) {
+                for (var tokenTipo : Tipos.values()) { // recorro todos mis tipos hasta allar el que corresponda a mi palabra
 
                     Pattern patron = Pattern.compile(tokenTipo.patron);
                     Matcher matcher = patron.matcher(palabra);
 
-
-
-                    if(matcher.find()){ // si se encuentra pues hahcemos el proceso de agregar el tipo al token , el valor y inicializar o aumentar al contador de tipos
+                    if (matcher.find()) { // si se encuentra pues hahcemos el proceso de agregar el tipo al token , el valor y inicializar o aumentar al contador de tipos
                         i++;
 
 
-                        if(i<=1) { //condicional para que no se repita el token con diferentes tipos
-                            boolean ok=true;
+
+                        if (i <= 1) { //condicional para que no se repita el token con diferentes tipos
+                            boolean ok = true;
                             Token tk = new Token();
 
 
@@ -87,7 +81,8 @@ public class Lexer{
                                 case NumeroDecimal:
                                     tk.setGrupo(8);
                                     break;
-                                    case asignacion: tk.setGrupo(5);
+                                case asignacion:
+                                    tk.setGrupo(5);
 
                             }
                             // Le agrego la linea en la que se encuentra
@@ -100,25 +95,25 @@ public class Lexer{
                             //pongo mi bandera en false si no existe la palabra reservada pues mi bandera ase queda en true asi que creo una instancia de Reservada y la agrego
                             // a mi arraylist
 
-                            if(rs.isEmpty()){
+                            if (rs.isEmpty()) {
                                 Reservada r = new Reservada(tk.getTipo().toString());
                                 rs.add(r);
-                            }else{
-                                for(var x:rs){
+                            } else {
+                                for (var x : rs) {
 
-                                    if(x.reservada.equals(tk.getTipo().toString())){
+                                    if (x.reservada.equals(tk.getTipo().toString())) {
 
                                         x.size++;
-                                        ok=false;
+                                        ok = false;
                                     }
                                 }
-                                if(ok==true){
+                                if (ok == true) {
                                     Reservada r = new Reservada(tk.getTipo().toString());
                                     rs.add(r);
                                 }
 
                             }
-                            matched=true;
+                            matched = true;
 
 
                         }
