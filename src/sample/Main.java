@@ -25,7 +25,6 @@ public class Main extends Application {
         primaryStage.setTitle(this.title);
         primaryStage.setScene(new Scene(root, 640, 500));
         primaryStage.setOnCloseRequest(e -> {
-
         });
         primaryStage.show();
     }

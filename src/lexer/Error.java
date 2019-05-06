@@ -9,7 +9,7 @@ public class Error {
         this.linea = linea;
     }
 
-    public String getMensjae(){
+    public String getMensaje(){
         return this.mensaje;
     }
 

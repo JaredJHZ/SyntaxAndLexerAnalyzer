@@ -6,16 +6,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lexer.Observables;
 
 public class LogicTableController {
     @FXML
     TableView tabla;
 
     @FXML void initialize() {
-        final ObservableList<Operators> data = FXCollections.observableArrayList(
-                new Operators("||",     "1",    "3" ),
-                new Operators("&&",  "2",  "3" )
-        );
+
         TableColumn operator = new TableColumn();
         operator.setText("operator");
         operator.setCellValueFactory(new PropertyValueFactory("operator"));
@@ -25,7 +23,8 @@ public class LogicTableController {
         TableColumn ai = new TableColumn();
         ai.setText("ai");
         ai.setCellValueFactory(new PropertyValueFactory("ai"));
-        tabla.setItems(data);
+
+        tabla.setItems(Observables.operadoresLogicos);
         tabla.getColumns().addAll(operator, idem, ai);
 
 

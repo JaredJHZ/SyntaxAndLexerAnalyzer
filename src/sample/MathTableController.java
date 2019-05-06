@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import lexer.Observables;
 
 
 public class MathTableController {
@@ -15,12 +16,7 @@ public class MathTableController {
     TableView tabla;
 
     @FXML void initialize() {
-        final ObservableList<Operators> data = FXCollections.observableArrayList(
-                new Operators("+",     "1",    "1" ),
-                new Operators("-",  "2",  "1" ),
-                new Operators("/",     "3", "1" ),
-                new Operators("*",      "4",    "1" )
-        );
+
         TableColumn operator = new TableColumn();
         operator.setText("operator");
         operator.setCellValueFactory(new PropertyValueFactory("operator"));
@@ -30,7 +26,7 @@ public class MathTableController {
         TableColumn ai = new TableColumn();
         ai.setText("ai");
         ai.setCellValueFactory(new PropertyValueFactory("ai"));
-        tabla.setItems(data);
+        tabla.setItems(Observables.operadoresAritmeticos);
         tabla.getColumns().addAll(operator, idem, ai);
 
 

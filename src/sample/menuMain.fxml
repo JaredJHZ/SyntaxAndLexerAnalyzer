@@ -39,6 +39,11 @@
                        <Menu text="Tablas dinamicas">
                            <items>
                                <MenuItem text="Tablas dinamicas" onAction="#openDynamicTable" />
+                               <Menu text="Especificos">
+                                   <items>
+                                       <MenuItem mnemonicParsing="false" text="Caracteres especiales" onAction="#createDynamicSpecialCharactersTable" />
+                                   </items>
+                               </Menu>
                            </items>
                        </Menu>
                    </items>

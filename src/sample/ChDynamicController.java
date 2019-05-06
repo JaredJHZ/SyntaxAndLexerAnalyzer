@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import lexer.Token;
 
-public class DynamicTableController {
+public class ChDynamicController {
     @FXML
     TableView tabla;
 
@@ -41,9 +41,13 @@ public class DynamicTableController {
     }
 
     public void setData(ObservableList<Token> data) {
+        System.out.println(data.get(0).getGrupo());
 
         for(var tk : data) {
-            this.data.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea(), tk.getIdem()));
+            if (tk.getGrupo().equals("6") || tk.getGrupo().equals("5")) {
+                System.out.println(tk.getIdem());
+                this.data.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea(), tk.getIdem()));
+            }
         }
 
         this.tabla.setItems(this.data);

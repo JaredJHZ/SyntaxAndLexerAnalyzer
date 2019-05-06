@@ -5,6 +5,7 @@ import sample.TK;
 
 import java.util.Stack;
 
+import static lexer.Tipos.*;
 
 
 public class Syntax {
@@ -59,35 +60,46 @@ Stack<Error> errores;
             }
 
         }
+        System.out.println(previous.getValor());
         switch (previous.getValor()) {
             case "void": {
                 return actual.getValor().matches("main");
             }
             case "main": {
-                return actual.getValor().matches( "begin");
+                return actual.getValor().matches( "\\{");
             }
             case "(": {
-                if (actual.getValor() == "(" || actual.getValor().matches(Tipos.OperadorArtitmetico.patron ) || actual.getValor().matches(Tipos.OperadoresLogicos.patron ) ) {
+                if (actual.getValor() == "(" || actual.getValor().matches(OperadorArtitmetico.patron ) || actual.getValor().matches(OperadoresLogicos.patron ) ) {
                     return false;
                 } else {
                     return true;
                 }
             }
             case ")": {
-                return actual.getValor() == "begin";
+                return actual.getValor() == "begin" || actual.getValor() == "\\}";
             }
-            case "begin":{
-                return actual.getValor().matches(Tipos.PalabrasReservadas.patron);
+            case "{":{
+                return actual.getValor().matches(PalabrasReservadas.patron);
             }
             case "integer":{
-                return actual.getValor().matches(Tipos.Variables.patron);
+                return actual.getValor().matches(Variables.patron);
             }
             case "string":{
-                return actual.getValor().matches(Tipos.Variables.patron);
+                return actual.getValor().matches(Variables.patron);
             }
             default:
-                return false;
+                if (previous.getValor().matches("\\w")){
+                    System.out.println(actual.getValor());
+                    if (actual.getValor().matches("\\}")){
+                        return true;
+                    } else{
+                        System.out.println("xddd");
+                    }
+                }
         }
+
+        return false;
+
     }
 
 

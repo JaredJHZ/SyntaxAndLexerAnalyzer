@@ -10,6 +10,8 @@ public class Token {
 
     public String linea;
 
+    public String idem;
+
 
     public void setTipo(Tipos tipo){
         this.tipo = tipo;
@@ -19,6 +21,7 @@ public class Token {
     }
     public void setGrupo(int grupo) {this.grupo = String.valueOf(grupo);}
     public void setLinea(int linea) {this.linea = String.valueOf(linea);}
+    public void setIdem(String idem) { this.idem = idem;}
 
     public String getValor(){
         return this.valor;
@@ -28,6 +31,7 @@ public class Token {
     }
     public String getGrupo() {return this.grupo;}
     public String getLinea() {return this.linea;}
+    public String getIdem() {return this.idem;}
 
 
 
@@ -41,7 +45,7 @@ enum Tipos{
     OperadoresLogicos("[&&,/|/|]"),
     OperadoresRelacionales("[>|<|>=|<=|==|!=]"),
     PalabrasReservadas("((\\bstring\\b)|(\\bbool\\b)|(\\binteger\\b)|(\\bdecimal\\b)|(\\bfor\\b)|(\\belse\\b)|(\\bif\\b)|(\\bvoid\\b)|(\\bmain\\b)|(\\bbegin\\b)|(\\bend\\b)){1}"),
-    CaracteresEspeciales("\\W+\\b\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;\\|b\\w+"),
+    CaracteresEspeciales("[\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;]"),
     Variables("\\w")
     ;
     public final String patron;

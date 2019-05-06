@@ -279,7 +279,7 @@ public class MainController {
     }
 
     @FXML private void doLexer(){
-        Lexer2 lex = new Lexer2();
+        Lexer lex = new Lexer();
 
         Scanner sn = new Scanner(this.guiInterface.getText());
 
@@ -305,7 +305,7 @@ public class MainController {
         doLexer();
 
         for(Token tk : this.lex1) {
-            this.tks.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea()));
+            this.tks.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea(), tk.getIdem()));
         }
 
         Syntax sx = new Syntax();
@@ -322,6 +322,21 @@ public class MainController {
             }
         }
 
+    }
+
+    @FXML private void createDynamicSpecialCharactersTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("CharactersDynamic.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            ChDynamicController controller = loader.getController();
+
+            controller.setData(this.data);
+            stage.showAndWait();
+
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
 

@@ -6,12 +6,14 @@ public class TK {
     String tipo;
     String grupo;
     String linea;
+    String idem;
 
-    public TK(String valor, String tipo, String grupo, String linea) {
+    public TK(String valor, String tipo, String grupo, String linea, String idem) {
         this.valor = valor;
         this.tipo = tipo;
         this.grupo = grupo;
         this.linea = linea;
+        this.idem = idem;
     }
 
     public String getValor() {
@@ -25,4 +27,6 @@ public class TK {
     public String getGrupo(){return  this.grupo;}
 
     public String getLinea() {return this.linea;}
+
+    public String getIdem() {return this.idem;}
 }
