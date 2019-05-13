@@ -124,7 +124,6 @@ public class Observables {
 
     public static String identificarTipo(String token) {
 
-        System.out.println(token);
 
         for(var tk: caracteresEspeciales){
             if(token.equals(tk.getOperator())) {

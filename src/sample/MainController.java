@@ -339,6 +339,50 @@ public class MainController {
         }
     }
 
+    @FXML private void createDynamicReservedWordsTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("ReservedWordsDynamic.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            ReservedWorddsDynamicController controller = loader.getController();
+
+            controller.setData(this.data);
+            stage.showAndWait();
+
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    @FXML private void createDynamicAritmeticOperatorsTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("AritmeticOperatorsDynamicTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            AritmeticOperatorsDynamicTableController controller = loader.getController();
+
+            controller.setData(this.data);
+            stage.showAndWait();
+
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    @FXML private void createDynamicRelationalOperatorsTable(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("RelationalOperatorsDynamicTable.fxml"));
+            Stage stage = new Stage();
+            stage.setScene(new Scene(loader.load()));
+            RelationalOperatorsDynamicTableController controller = loader.getController();
+
+            controller.setData(this.data);
+            stage.showAndWait();
+
+        }catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
 
     private void setNumberLines() {

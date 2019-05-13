@@ -60,7 +60,6 @@ Stack<Error> errores;
             }
 
         }
-        System.out.println(previous.getValor());
         switch (previous.getValor()) {
             case "void": {
                 return actual.getValor().matches("main");
@@ -82,23 +81,40 @@ Stack<Error> errores;
                 return actual.getValor().matches(PalabrasReservadas.patron);
             }
             case "integer":{
-                return actual.getValor().matches(Variables.patron);
+                return actual.getGrupo().matches("6");
             }
             case "string":{
-                return actual.getValor().matches(Variables.patron);
+                return actual.getGrupo().matches("6");
+            }
+            case "decimal":{
+                return actual.getGrupo().matches("6");
             }
             default:
-                if (previous.getValor().matches("\\w")){
-                    System.out.println(actual.getValor());
-                    if (actual.getValor().matches("\\}")){
-                        return true;
-                    } else{
-                        System.out.println("xddd");
-                    }
+                if (previous.getValor().matches(asignacion.patron)) {
+                    return actual.getValor().matches(cadena.patron) || actual.getValor().matches(NumeroEntero.patron ) || actual.getValor().matches(NumeroDecimal.patron);
+
                 }
+
+                if (previous.getValor().matches(NumeroEntero.patron)) {
+                    return actual.getValor().matches(OperadorArtitmetico.patron) || actual.getValor().matches(Variables.patron) || actual.getValor().equals("}") || actual.getValor().matches(PalabrasReservadas.patron);
+                }
+
+                if (previous.getValor().matches(OperadorArtitmetico.patron)) {
+                    return actual.getValor().matches(NumeroEntero.patron) || actual.getValor().matches(NumeroDecimal.patron);
+                }
+
+                if (previous.getValor().matches(OperadoresLogicos.patron)) {
+                    return actual.getValor().matches(Variables.patron) || actual.getValor().equals("(");
+                }
+
+                if (previous.getValor().matches(Variables.patron)) {
+                    return true;
+                }
+
+                return true;
         }
 
-        return false;
+
 
     }
 

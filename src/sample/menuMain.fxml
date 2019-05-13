@@ -41,7 +41,10 @@
                                <MenuItem text="Tablas dinamicas" onAction="#openDynamicTable" />
                                <Menu text="Especificos">
                                    <items>
+                                       <MenuItem mnemonicParsing="false" text="Operadors aritmeticos" onAction="#createDynamicAritmeticOperatorsTable" />
+                                       <MenuItem mnemonicParsing="false" text="Operadors relacionales" onAction="#createDynamicRelationalOperatorsTable" />
                                        <MenuItem mnemonicParsing="false" text="Caracteres especiales" onAction="#createDynamicSpecialCharactersTable" />
+                                       <MenuItem mnemonicParsing="false" text="Palabras reservadas" onAction="#createDynamicReservedWordsTable" />
                                    </items>
                                </Menu>
                            </items>
