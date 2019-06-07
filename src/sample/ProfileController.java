@@ -16,7 +16,7 @@ public class ProfileController {
 
 
         try {
-            URL url = getClass().getResource("me.jpg");
+            URL url = getClass().getResource("me.jpeg");
             Image image = new Image(String.valueOf(url.toURI()));
             this.imagen.setImage(image);
         }catch (URISyntaxException ex){

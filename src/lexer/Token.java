@@ -42,9 +42,9 @@ enum Tipos{
     cadena("\"(?:'.*?')|(?:\\\".*?\\\")"),
     asignacion("="),
     OperadorArtitmetico("(?>[*|//|+|-]+){1}"),
-    OperadoresLogicos("[&&,/|/|]"),
+    OperadoresLogicos("((\\band\\b)|(\\bor\\b))"),
     OperadoresRelacionales("[>|<|>=|<=|==|!=]"),
-    PalabrasReservadas("((\\bstring\\b)|(\\bbool\\b)|(\\binteger\\b)|(\\bdecimal\\b)|(\\bfor\\b)|(\\belse\\b)|(\\bif\\b)|(\\bvoid\\b)|(\\bmain\\b)|(\\bbegin\\b)|(\\bend\\b)){1}"),
+    PalabrasReservadas("((\\bstring\\b)|(\\bbool\\b)|(\\binteger\\b)|(\\bdecimal\\b)|(\\bfor\\b)|(\\belse\\b)|(\\bif\\b)|(\\bvoid\\b)|(\\bmain\\b)|(\\bout\\b)|(\\bin\\b)){1}"),
     CaracteresEspeciales("[\\{|\\}|\\(|\\)|\\@|\\&|\\'|\\||\\`|\\~|\\?|\\:|\\;]"),
     Variables("\\w")
     ;

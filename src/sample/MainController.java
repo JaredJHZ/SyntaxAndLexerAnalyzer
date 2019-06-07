@@ -62,9 +62,7 @@ public class MainController {
 
 
             this.guiInterface.setOnKeyReleased(e -> {
-                if(e.getCode() == KeyCode.ENTER || e.getCode() == KeyCode.BACK_SPACE) {
                     this.setNumberLines();
-                }
             });
 
             this.save.setOnAction( e -> {
@@ -85,10 +83,13 @@ public class MainController {
                     writer = new PrintWriter(file);
                     writer.println(this.guiInterface.getText());
                     writer.close();
+                    stage.setTitle(this.file.getName());
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
             }
+
+            this.archivoGuardado = true;
 
 
         });
@@ -104,7 +105,7 @@ public class MainController {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Archivo no guardado");
             alert.setHeaderText("Archivo no guardado");
-            alert.setContentText("Desea guardar el archivos?");
+            alert.setContentText("Desea guardar el archivo?");
 
             Optional<ButtonType> result = alert.showAndWait();
 
@@ -147,12 +148,14 @@ public class MainController {
             String line;
             this.fr = new FileReader(file.getPath());
             this.br = new BufferedReader(fr);
+            this.guiInterface.setText(null);
 
             while((line = br.readLine()) != null) {
-                this.guiInterface.appendText(line);
+                this.guiInterface.appendText(line + "\n");
             }
 
             stage.setTitle(this.file.getName());
+            this.setNumberLines();
 
 
         }catch (IOException ex) {
@@ -317,8 +320,9 @@ public class MainController {
         if(errores == null || errores.isEmpty()) {
             this.message.setText("Programa compilado con exito");
         } else {
+            this.message.setText(null);
             for(var error: errores) {
-                this.message.setText("Error en linea: " + error.getLinea());
+                this.message.appendText("Error en linea: " + error.getLinea() + " " +error.getMensaje() + "\n");
             }
         }
 
@@ -388,7 +392,7 @@ public class MainController {
     private void setNumberLines() {
         int n = this.guiInterface.getText().split("\n").length;
         String cadena = "";
-        for (int i = 0 ; i < n+1 ; i++) {
+        for (int i = 0 ; i < n ; i++) {
             cadena += String.valueOf(i+1)+"\n";
         }
         this.numberLines.setText(cadena);

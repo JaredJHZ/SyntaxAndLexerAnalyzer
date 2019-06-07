@@ -41,10 +41,9 @@ public class AritmeticOperatorsDynamicTableController {
     }
 
     public void setData(ObservableList<Token> data) {
-        System.out.println(data.get(0).getGrupo());
 
         for(var tk : data) {
-            if (tk.getGrupo().equals("6") || tk.getGrupo().equals("1")) {
+            if (tk.getGrupo().equals("1")) {
                 System.out.println(tk.getIdem());
                 this.data.add(new TK(tk.getValor(), tk.getTipo(), tk.getGrupo(), tk.getLinea(), tk.getIdem()));
             }

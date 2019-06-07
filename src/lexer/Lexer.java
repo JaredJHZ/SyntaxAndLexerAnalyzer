@@ -17,7 +17,7 @@ public class Lexer {
 
 
 
-        Scanner scanner = new Scanner(entrada);
+
         final ArrayList<Token> tokens = new ArrayList<Token>(); //arraylist de tokens
         Scanner st = new Scanner(entrada); // mi tokenizer que tendra el codigo que se pasa como parametro a entrada
         st.useDelimiter(Delimiters.delimiters.patron);
@@ -48,6 +48,7 @@ public class Lexer {
 
                         if (i <= 1) { //condicional para que no se repita el token con diferentes tipos
                             boolean ok = true;
+
                             Token tk = new Token();
 
 

@@ -80,7 +80,8 @@ public class Observables {
             new Operators(";",  "68",  "5" ),
             new Operators(".",  "69",  "5" ),
             new Operators("@",  "70",  "5" ),
-            new Operators("ñ",  "71",  "5" )
+            new Operators("ñ",  "71",  "5" ),
+            new Operators("=", "72", "5")
     );
 
     public static ObservableList<Operators> operadoresRelacionales = FXCollections.observableArrayList(
@@ -102,7 +103,9 @@ public class Observables {
             new Operators("in",  "8",  "4" ),
             new Operators("out",  "9",  "4" ),
             new Operators("if",  "10",  "4" ),
-            new Operators("else",  "11",  "4" )
+            new Operators("else",  "11",  "4" ),
+            new Operators("void", "12","4"),
+            new Operators("main", "13", "4")
 
     );
 
